@@ -1,0 +1,32 @@
+<table>
+    <thead>
+        <tr>
+            <th>Quiz ID</th>
+            <th>Request ID</th>
+            <th>CA Quiz ID</th>
+            <th>Answer 1</th>
+            <th>Answer 2</th>
+            <th>Answer 3</th>
+            <th>Correct Answer 1</th>
+            <th>Correct Answer 2</th>
+            <th>Correct Answer 3</th>
+            <th>Total Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in sorted_rows %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+            <td>{{ row[6] }}</td>
+            <td>{{ row[7] }}</td>
+            <td>{{ row[8] }}</td>
+            <td>{{ row[9] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

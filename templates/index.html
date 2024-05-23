@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Time</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Time</h1>
+        <form action="{{ url_for('submit') }}" method="post">
+            {% for question in questions %}
+                <div>
+                    <label for="answer_{{ question.id }}">{{ question.question }}</label><br>
+                    <input type="text" id="answer_{{ question.id }}" name="answer_{{ question.id }}"><br><br>
+                </div>
+            {% endfor %}
+            <button type="submit">Submit Answers</button>
+        </form>
+    </div>
+</body>
+</html>

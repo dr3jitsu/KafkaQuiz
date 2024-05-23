@@ -1,0 +1,122 @@
+curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Basic TlpXUVRFTUNNWEVFV1dSVjpwWkRhL3JGU25mTmVNZEV4TUJWZWE5c2V6Uk9EbVpFaHBvN0Nhdy85UlRESmpzU1NrSCtiRVJ1N1FvbTNobzFJ" \
+  https://pkc-12576z.us-west2.gcp.confluent.cloud:443/kafka/v3/clusters/lkc-51m5gq/topics \
+  -d '{"topic_name":"submitted_answers2"}'
+
+  curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Basic TlpXUVRFTUNNWEVFV1dSVjpwWkRhL3JGU25mTmVNZEV4TUJWZWE5c2V6Uk9EbVpFaHBvN0Nhdy85UlRESmpzU1NrSCtiRVJ1N1FvbTNobzFJ" \
+  https://pkc-12576z.us-west2.gcp.confluent.cloud:443/kafka/v3/clusters/lkc-51m5gq/topics/submitted_answers2/records \
+  -d '{"value":{"type":"JSON","data":"Hello World!"}}'
+
+  CREATE TABLE correct_answers (
+  quiz_id VARCHAR PRIMARY KEY,
+  ca_1 VARCHAR,
+  ca_2 VARCHAR,
+  ca_3 VARCHAR,
+  ca_4 VARCHAR,
+  ca_5 VARCHAR,
+  ca_6 VARCHAR,
+  ca_7 VARCHAR,
+  ca_8 VARCHAR
+) WITH (
+  KAFKA_TOPIC = 'correct_answers',
+  VALUE_FORMAT = 'JSON',
+  PARTITIONS = 1
+);
+
+-- Insert the correct answers into the table
+INSERT INTO correct_answers (quiz_id, ca_1,ca_2,ca_3,ca_4,ca_5,ca_6,ca_7,ca_8)
+VALUES ('1', 'A','B','C','D','E','F','G','H');
+
+
+CREATE STREAM submitted_answers_st (
+  `1` VARCHAR,
+  `2` VARCHAR,
+  `3` VARCHAR,
+  `4` VARCHAR,
+  `5` VARCHAR,
+  `6` VARCHAR,
+  `7` VARCHAR,
+  `8` VARCHAR,
+  req_id VARCHAR,
+  quiz_id VARCHAR
+) WITH (
+  KAFKA_TOPIC = 'submitted_answers',
+  VALUE_FORMAT = 'JSON'
+);
+
+
+CREATE STREAM evaluated_answers_q1 AS
+  SELECT
+    sa.quiz_id,
+    sa.req_id,
+    ca.quiz_id,
+    sa.`1` AS answer_1,
+    sa.`2` AS answer_2,
+    sa.`3` AS answer_3,
+    sa.`4` AS answer_4,
+    sa.`5` AS answer_5,
+    sa.`6` AS answer_6,
+    sa.`7` AS answer_7,
+    sa.`8` AS answer_8,
+    ca.ca_1 AS ca_1,
+    ca.ca_2 AS ca_2,
+    ca.ca_3 AS ca_3,
+    ca.ca_4 AS ca_4,
+    ca.ca_5 AS ca_5,
+    ca.ca_6 AS ca_6,
+    ca.ca_7 AS ca_7,
+    ca.ca_8 AS ca_8,
+    CASE WHEN sa.`5` = ca.ca_5 THEN 1 ELSE 0 END +
+    CASE WHEN sa.`6` = ca.ca_6 THEN 1 ELSE 0 END +
+    CASE WHEN sa.`7` = ca.ca_7 THEN 1 ELSE 0 END +
+    CASE WHEN sa.`8` = ca.ca_8 THEN 1 ELSE 0 END AS total_score
+  FROM submitted_answers_st sa
+  LEFT JOIN correct_answers ca ON  sa.quiz_id = ca.quiz_id
+  WHERE sa.quiz_id = '1';
+
+CREATE TABLE QUERYABLE_CORRECT_ANSWERS AS SELECT * FROM CORRECT_ANSWERS;
+
+lsof -i :5000
+
+  +---------+------------------------------------------------------------------+
+| API Key | ZIAEUR3H4S4WNRNR                                                 |
+| Secret  | GIAQVBFi6qp0STeFphkVIhM+qPEMI/5H66FmiM/9IUPKHtvxKiQq0A1pDOZyIw1P |
++---------+------------------------------------------------------------------+
+
+POST /query HTTP/1.1
+Authorization: Basic WklBRVVSM0g0UzRXTlJOUjpHSUFRVkJGaTZxcDBTVGVGcGhrVkloTStxUEVNSS81SDY2Rm1pTS85SVVQS0h0dnhLaVFxMEExcERPWnlJdzFQ
+Host: pksqlc-k8mj5p.us-west2.gcp.confluent.cloud
+Accept: application/vnd.ksql.v1+json
+Content-Type: application/json
+Content-Length: 81
+
+{
+  "ksql": "select * from QUERYABLE_CORRECT_ANSWERS;",
+  "streamProperties":{}
+}
+
+[{"header":{"queryId":"transient_EVALUATED_ANSWERS_9069513997695614127","schema":"`SA_QUIZ_ID` STRING, `REQ_ID` STRING, `CA_QUIZ_ID` STRING, `ANSWER_1` STRING, `ANSWER_2` STRING, `ANSWER_3` STRING, `C_ANSWER_1` STRING, `C_ANSWER_2` STRING, `C_ANSWER_3` STRING, `TOTAL_SCORE` INTEGER"}},
+{"row":{"columns":["1","19c80620-6929-4218-87be-5d1b703db687","1","Paris","4","Shakespeare","Paris","4","Shakespeare",3]}},
+{"row":{"columns":["1","893d3cd3-23ec-4630-9012-59a1b91a209c","1","Paris","5","SS","Paris","4","Shakespeare",1]}},
+{"finalMessage":"Query Completed"}]
+
+
+
+https://pksqlc-k8mj5p.us-west2.gcp.confluent.cloud:443/ksql
+
+POST /ksql HTTP/1.1
+Authorization: Basic WklBRVVSM0g0UzRXTlJOUjpHSUFRVkJGaTZxcDBTVGVGcGhrVkloTStxUEVNSS81SDY2Rm1pTS85SVVQS0h0dnhLaVFxMEExcERPWnlJdzFQ
+Host: pksqlc-k8mj5p.us-west2.gcp.confluent.cloud
+Accept: application/vnd.ksql.v1+json
+Content-Type: application/json
+Content-Length: 54
+
+{
+  "ksql": "show streams;",
+  "streamProperties":{}
+}
