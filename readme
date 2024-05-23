@@ -1,14 +1,14 @@
 curl \
   -X POST \
   -H "Content-Type: application/json" \
-  -H "Authorization: Basic TlpXUVRFTUNNWEVFV1dSVjpwWkRhL3JGU25mTmVNZEV4TUJWZWE5c2V6Uk9EbVpFaHBvN0Nhdy85UlRESmpzU1NrSCtiRVJ1N1FvbTNobzFJ" \
+  -H "Authorization: Basic TlpXUVRFTUNNWEVFV1dSVjpwWkRhLV4TUJWZWE5c" \
   https://pkc-12576z.us-west2.gcp.confluent.cloud:443/kafka/v3/clusters/lkc-51m5gq/topics \
   -d '{"topic_name":"submitted_answers2"}'
 
   curl \
   -X POST \
   -H "Content-Type: application/json" \
-  -H "Authorization: Basic TlpXUVRFTUNNWEVFV1dSVjpwWkRhL3JGU25mTmVNZEV4TUJWZWE5c2V6Uk9EbVpFaHBvN0Nhdy85UlRESmpzU1NrSCtiRVJ1N1FvbTNobzFJ" \
+  -H "Authorization: Basic TlpXUVRFTUNNWEVFV1dSVjpwWkRhLWZWE5c2V6Uk" \
   https://pkc-12576z.us-west2.gcp.confluent.cloud:443/kafka/v3/clusters/lkc-51m5gq/topics/submitted_answers2/records \
   -d '{"value":{"type":"JSON","data":"Hello World!"}}'
 
@@ -83,13 +83,10 @@ CREATE TABLE QUERYABLE_CORRECT_ANSWERS AS SELECT * FROM CORRECT_ANSWERS;
 
 lsof -i :5000
 
-  +---------+------------------------------------------------------------------+
-| API Key | ZIAEUR3H4S4WNRNR                                                 |
-| Secret  | GIAQVBFi6qp0STeFphkVIhM+qPEMI/5H66FmiM/9IUPKHtvxKiQq0A1pDOZyIw1P |
-+---------+------------------------------------------------------------------+
+
 
 POST /query HTTP/1.1
-Authorization: Basic WklBRVVSM0g0UzRXTlJOUjpHSUFRVkJGaTZxcDBTVGVGcGhrVkloTStxUEVNSS81SDY2Rm1pTS85SVVQS0h0dnhLaVFxMEExcERPWnlJdzFQ
+Authorization: Basic WklBRVVSM0g0UzRXTlJOUjpHSUFRVGcFxMEExcERPWnlJdzFQ
 Host: pksqlc-k8mj5p.us-west2.gcp.confluent.cloud
 Accept: application/vnd.ksql.v1+json
 Content-Type: application/json
@@ -110,7 +107,7 @@ Content-Length: 81
 https://pksqlc-k8mj5p.us-west2.gcp.confluent.cloud:443/ksql
 
 POST /ksql HTTP/1.1
-Authorization: Basic WklBRVVSM0g0UzRXTlJOUjpHSUFRVkJGaTZxcDBTVGVGcGhrVkloTStxUEVNSS81SDY2Rm1pTS85SVVQS0h0dnhLaVFxMEExcERPWnlJdzFQ
+Authorization: Basic WklBRVVSM0g0UzRXTlJOUjpHSUFRVkJGaTZxcDBTVGVVFxMEExcERPWnlJdzFQ
 Host: pksqlc-k8mj5p.us-west2.gcp.confluent.cloud
 Accept: application/vnd.ksql.v1+json
 Content-Type: application/json
