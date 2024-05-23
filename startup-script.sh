@@ -1,7 +1,7 @@
 # Install or update needed software
-apt-get update
-apt-get install -yq git supervisor python python-pip python3-distutils gunicorn
-pip install --upgrade pip virtualenv
+sudo apt-get update
+sudo apt-get install -yq git supervisor python python-pip python3-distutils gunicorn
+sudo pip install --upgrade pip virtualenv
 
 # Fetch source code
 mkdir -p $HOME/flask-app
