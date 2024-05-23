@@ -45,7 +45,7 @@ curl \
 
 -- Insert the correct answers into the table
 INSERT INTO correct_answers (quiz_id, ca_1,ca_2,ca_3,ca_4,ca_5,ca_6,ca_7,ca_8)
-VALUES ('1', 'A','B','C','D','E','F','G','H');
+VALUES ('2', 'A','B','C','D','Kafka','2014','Jay Kreps','ksqlDB');
 
 
 CREATE STREAM submitted_answers_st (
