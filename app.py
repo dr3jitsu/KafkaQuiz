@@ -23,8 +23,8 @@ questions = [
 # This URL would be the endpoint where answers are submitted
 SUBMISSION_URL = "https://pkc-12576z.us-west2.gcp.confluent.cloud:443/kafka/v3/clusters/lkc-51m5gq/topics/submitted_answers/records"
 SUBMISSION_URL_KSQLDB = "https://pksqlc-k8mj5p.us-west2.gcp.confluent.cloud/query"
-AUTH_HEADER = "TlpXUVRFTUNNWEVFV1dSVjpwWkRhL3JGU25mTmVNZEV4TUJWZWE5c2V6Uk9EbVpFaHBvN0Nhdy85UlRESmpzU1NrSCtiRVJ1N1FvbTNobzFJ"
-AUTH_HEADER_KSQLDB = "WklBRVVSM0g0UzRXTlJOUjpHSUFRVkJGaTZxcDBTVGVGcGhrVkloTStxUEVNSS81SDY2Rm1pTS85SVVQS0h0dnhLaVFxMEExcERPWnlJdzFQ"
+AUTH_HEADER = "TlpXUVRFTUNNWEVFV1dSVjpwWkRhL3JGU25mTmWE5c2rSCtiRVJ1N1FvbTNobzFJ"
+AUTH_HEADER_KSQLDB = "WklBRVVSM0g0UzRXTlJOUjpHSUVGS85SVVQS0h0dnhLaVFxMEExcERPWnlJdzFQ"
 
 headers = {
     "Content-Type": "application/json",
