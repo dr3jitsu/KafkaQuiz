@@ -14,7 +14,7 @@ sudo chown -R $USER $HOME/flask-app
 
 # Python environment setup
 virtualenv -p python3 $HOME/flask-app/env
-/bin/bash -c "source $HOME/flask-app/env/bin/activate"
+source $HOME/flask-app/env/bin/activate
 $HOME/flask-app/env/bin/pip install -r $HOME/flask-app/requirements.txt
 
 
