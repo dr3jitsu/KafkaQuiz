@@ -13,7 +13,7 @@
             {% for question in questions %}
                 <div>
                     <label for="answer_{{ question.id }}">{{ question.question }}</label><br>
-                    <input type="text" id="answer_{{ question.id }}" name="answer_{{ question.id }}"><br><br>
+                    <input type="text" id="answer_{{ question.id }}" name="answer_{{ question.id }}" required><br><br>
                 </div>
             {% endfor %}
             <button type="submit">Submit Answers</button>
