@@ -65,7 +65,7 @@ CREATE STREAM submitted_answers_st (
 );
 
 
-CREATE STREAM evaluated_answers_q1 AS
+CREATE STREAM evaluated_answers_q2 AS
   SELECT
     sa.quiz_id,
     sa.req_id,
@@ -86,13 +86,15 @@ CREATE STREAM evaluated_answers_q1 AS
     ca.ca_6 AS ca_6,
     ca.ca_7 AS ca_7,
     ca.ca_8 AS ca_8,
-    CASE WHEN sa.`5` = ca.ca_5 THEN 1 ELSE 0 END +
-    CASE WHEN sa.`6` = ca.ca_6 THEN 1 ELSE 0 END +
-    CASE WHEN sa.`7` = ca.ca_7 THEN 1 ELSE 0 END +
-    CASE WHEN sa.`8` = ca.ca_8 THEN 1 ELSE 0 END AS total_score
+    CASE WHEN UCASE(sa.`5`) = UCASE(ca.ca_5) THEN 1 ELSE 0 END +
+    CASE WHEN UCASE(sa.`6`) = UCASE(ca.ca_6) THEN 1 ELSE 0 END +
+    CASE WHEN UCASE(sa.`7`) = UCASE(ca.ca_7) THEN 1 ELSE 0 END +
+    CASE WHEN UCASE(sa.`8`) = UCASE(ca.ca_8) THEN 1 ELSE 0 END AS total_score
   FROM submitted_answers_st sa
   LEFT JOIN correct_answers ca ON  sa.quiz_id = ca.quiz_id
-  WHERE sa.quiz_id = '1';
+  WHERE sa.quiz_id = '2';
+
+sudo netstat -tuln | grep 8080 | ps
 
 CREATE TABLE QUERYABLE_CORRECT_ANSWERS AS SELECT * FROM CORRECT_ANSWERS;
 
