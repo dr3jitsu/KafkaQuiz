@@ -16,11 +16,8 @@ sudo chown -R $USER $HOME/flask-app
 virtualenv -p python3 $HOME/flask-app/env
 source $HOME/flask-app/env/bin/activate
 $HOME/flask-app/env/bin/pip install -r $HOME/flask-app/requirements.txt
-
-
-# Put supervisor configuration in proper place
-#cp flask-ap/python-app.conf /etc/supervisor/conf.d/python-app.conf
+python app.py
 
 # Start service via supervisorctl
-supervisorctl reread
-supervisorctl update
+#supervisorctl reread
+#supervisorctl update
