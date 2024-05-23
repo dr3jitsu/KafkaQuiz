@@ -12,7 +12,7 @@ questions = [
     {"id": 2, "question": "What is your email address?"},
     {"id": 3, "question": "What is your phone number?"},
     {"id": 4, "question": "Which company do you work for?"},
-    {"id": 5, "question": "What is Kafka?"},
+    {"id": 5, "question": "What is the de facto standard for data streaming?"},
     {"id": 6, "question": "What is Apache Kafka used for?"},
     {"id": 7, "question": "What is the role of Kafka in data streaming?"},
     {"id": 8, "question": "What are some key features of Confluent Platform?"}
