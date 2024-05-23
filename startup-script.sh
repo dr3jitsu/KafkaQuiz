@@ -4,7 +4,6 @@ apt-get install -yq git supervisor python python-pip python3-distutils gunicorn
 pip install --upgrade pip virtualenv
 
 # Fetch source code
-export HOME=/home/ahartono
 mkdir -p $HOME/flask-app
 cd $HOME/flask-app
 
