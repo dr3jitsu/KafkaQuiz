@@ -19,7 +19,7 @@ KafkaQuiz collects user information and quiz answers through a web interface. Th
 
 2. **Data Submission**: Upon form submission, the user's answers are formatted into a JSON object and sent to a Kafka topic hosted on Confluent Cloud. This is done via an HTTP POST request to the Confluent Cloud REST Proxy endpoint.
 
-3. **Data Storage**: The submitted data is stored in a Kafka topic in Confluent Cloud. This allows for scalable and reliable handling of quiz submissions.
+3. **Produce Record and Store it in a topic**: The submitted data is stored in a Kafka topic in Confluent Cloud. This allows for scalable and reliable handling of quiz submissions.
 
 4. **Data Processing with ksqlDB**: ksqlDB, a SQL engine for Apache Kafka, is used to query the Kafka topic and evaluate the quiz answers. The application sends SQL queries to ksqlDB via HTTP POST requests to retrieve processed results.
 
