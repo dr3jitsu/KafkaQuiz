@@ -3,12 +3,27 @@
 KafkaQuiz is a simple Flask web application that collects user information and quiz answers related to Apache Kafka and Confluent. The application submits answers to a Kafka topic and retrieves results using ksqlDB.
 
 ## Table of Contents
+- [Overview](#overview)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Deployment](#deployment)
 - [Endpoints](#endpoints)
 - [License](#license)
+
+## Overview
+
+KafkaQuiz collects user information and quiz answers through a web interface. The flow of data from the web application to Confluent Cloud and back is as follows:
+
+1. **User Interaction**: A user accesses the KafkaQuiz application through a web browser on their mobile device or computer. They fill out a form with their information and answers to quiz questions.
+
+2. **Data Submission**: Upon form submission, the user's answers are formatted into a JSON object and sent to a Kafka topic hosted on Confluent Cloud. This is done via an HTTP POST request to the Confluent Cloud REST Proxy endpoint.
+
+3. **Data Storage**: The submitted data is stored in a Kafka topic in Confluent Cloud. This allows for scalable and reliable handling of quiz submissions.
+
+4. **Data Processing with ksqlDB**: ksqlDB, a SQL engine for Apache Kafka, is used to query the Kafka topic and evaluate the quiz answers. The application sends SQL queries to ksqlDB via HTTP POST requests to retrieve processed results.
+
+5. **Results Retrieval**: The processed results are retrieved from ksqlDB and displayed to the user. The results are sorted and filtered to show the top 8 entries.
 
 ## Installation
 
@@ -93,4 +108,3 @@ pip install -r requirements.txt
 
 # Run the application
 gunicorn -w 4 -b 0.0.0.0:90 app:app
-
