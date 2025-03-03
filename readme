@@ -16,14 +16,14 @@ gcloud compute instances get-serial-port-output $MY_INSTANCE_NAME --zone $ZONE
 curl \
   -X POST \
   -H "Content-Type: application/json" \
-  -H "Authorization: Basic TlpXUVRFTUNNWEVFV1dSVjpwWkRhLV4TUJWZWE5c" \
+  -H "Authorization: Basic TlpXUVRFTUNNWEVFV1dSxxxxxTUJWZWE5c" \
   https://pkc-12576z.us-west2.gcp.confluent.cloud:443/kafka/v3/clusters/lkc-51m5gq/topics \
   -d '{"topic_name":"submitted_answers2"}'
 
   curl \
   -X POST \
   -H "Content-Type: application/json" \
-  -H "Authorization: Basic TlpXUVRFTUNNWEVFV1dSVjpwWkRhLWZWE5c2V6Uk" \
+  -H "Authorization: Basic TlpXUVRFTUNNWEVFV1xxxxxxZWE5c2V6Uk" \
   https://pkc-12576z.us-west2.gcp.confluent.cloud:443/kafka/v3/clusters/lkc-51m5gq/topics/submitted_answers2/records \
   -d '{"value":{"type":"JSON","data":"Hello World!"}}'
 
@@ -103,7 +103,7 @@ lsof -i :5000
 
 
 POST /query HTTP/1.1
-Authorization: Basic WklBRVVSM0g0UzRXTlJOUjpHSUFRVGcFxMEExcERPWnlJdzFQ
+Authorization: Basic WklBRVVSM0g0UzRXxxxxxEExcERPWnlJdzFQ
 Host: pksqlc-k8mj5p.us-west2.gcp.confluent.cloud
 Accept: application/vnd.ksql.v1+json
 Content-Type: application/json
@@ -124,7 +124,7 @@ Content-Length: 81
 https://pksqlc-k8mj5p.us-west2.gcp.confluent.cloud:443/ksql
 
 POST /ksql HTTP/1.1
-Authorization: Basic WklBRVVSM0g0UzRXTlJOUjpHSUFRVkJGaTZxcDBTVGVVFxMEExcERPWnlJdzFQ
+Authorization: Basic WklBRVVSM0g0UzRXTlJOUxxxxxFxMEExcERPWnlJdzFQ
 Host: pksqlc-k8mj5p.us-west2.gcp.confluent.cloud
 Accept: application/vnd.ksql.v1+json
 Content-Type: application/json
